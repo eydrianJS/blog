@@ -3,7 +3,7 @@ import MainLayout from '../../layouts/MainLayout'
 import Blog from '../../components/Blog'
 
 const BlogPage = () => {
-    return <MainLayout Page={<Blog />}/>
+  return <MainLayout Page={<Blog />} />
 }
 
 export default BlogPage

@@ -1,17 +1,17 @@
 import React from 'react'
 import useStyles from './style'
-import {Container, CssBaseline } from '@material-ui/core'
+import { Container, CssBaseline } from '@material-ui/core'
 
 interface MainLayoutParams {
-    Page: React.ReactNode
+  Page: React.ReactNode
 }
 
-const MainLayout = ({Page}: MainLayoutParams) => {
+const MainLayout = ({ Page }: MainLayoutParams) => {
   const classes = useStyles()
 
   return (
     <main className={classes.main}>
-        NAVBAR
+      NAVBAR
       {/* <Navbar currentUser={currentUser} /> */}
       <div className={classes.root}>
         <Container>
