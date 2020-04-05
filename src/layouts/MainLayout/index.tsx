@@ -1,6 +1,8 @@
 import React from 'react'
 import useStyles from './style'
 import { Container, CssBaseline } from '@material-ui/core'
+import Navbar from '../../components/Navbar'
+import { Paper } from '@material-ui/core'
 
 interface MainLayoutParams {
   Page: React.ReactNode
@@ -11,12 +13,11 @@ const MainLayout = ({ Page }: MainLayoutParams) => {
 
   return (
     <main className={classes.main}>
-      NAVBAR
-      {/* <Navbar currentUser={currentUser} /> */}
+      <Navbar />
       <div className={classes.root}>
         <Container>
           <CssBaseline />
-          {Page}
+          <Paper className={classes.paper}>{Page}</Paper>
         </Container>
       </div>
     </main>
