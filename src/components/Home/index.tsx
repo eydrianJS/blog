@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import useStyle from './style'
 import Button from '@material-ui/core/Button'
+import { Paper } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 
 const RegisterValidation = (values: { email: string }) => {
@@ -27,33 +28,35 @@ const Home = () => {
   })
 
   return (
-    <Grid container direction="row" justify="space-around" alignItems="center">
-      <img src={image} className={classes.image} alt="newsletter" />
-      <div className={classes.buttons}>
-        <Typography variant="h6" className={classes.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. At volutpat diam ut
-          venenatis tellus in. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus.
-        </Typography>
-        <form onSubmit={formik.handleSubmit}>
-          <TextField
-            id="email"
-            name="email"
-            type="text"
-            label="Adres email"
-            variant="outlined"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            className={classes.email}
-            autoComplete="off"
-          />
-          <Button type="submit" variant="contained" className={classes.save}>
-            Zapisz się
-          </Button>
-          {formik.errors.email && formik.touched.email ? <div>{formik.errors.email}</div> : null}
-        </form>
-      </div>
-    </Grid>
+    <Paper className={classes.paper}>
+      <Grid container direction="row" justify="space-around" alignItems="center">
+        <img src={image} className={classes.image} alt="newsletter" />
+        <div className={classes.buttons}>
+          <Typography variant="h6" className={classes.text}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. At volutpat diam
+            ut venenatis tellus in. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus.
+          </Typography>
+          <form onSubmit={formik.handleSubmit}>
+            <TextField
+              id="email"
+              name="email"
+              type="text"
+              label="Adres email"
+              variant="outlined"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              className={classes.email}
+              autoComplete="off"
+            />
+            <Button type="submit" id="save" variant="contained" className={classes.save}>
+              Zapisz się
+            </Button>
+            {formik.errors.email && formik.touched.email ? <div>{formik.errors.email}</div> : null}
+          </form>
+        </div>
+      </Grid>
+    </Paper>
   )
 }
 

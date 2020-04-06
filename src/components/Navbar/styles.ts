@@ -23,16 +23,5 @@ export default makeStyles({
     margin: 10,
     color: '#ffffff',
     cursor: 'pointer'
-  },
-  menu: {
-    cursor: 'pointer',
-    display: 'none',
-    color: '#ffffff',
-    [theme.breakpoints.down('sm')]: {
-      position: 'absolute',
-      right: 20,
-      top: 15,
-      display: 'block'
-    }
   }
 })
