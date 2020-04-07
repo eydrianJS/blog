@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 import { AppBar, Toolbar, Typography } from '@material-ui/core/'
 import { Link } from 'react-router-dom'
 import useStyles from './styles'
@@ -16,7 +16,7 @@ const Navbar = () => {
             FSFrontend
           </Typography>
           <Typography className={classes.title} variant="h6" noWrap component={Link} to="/blog">
-            BLOG
+            Blog
           </Typography>
           {/* <Typography className={classes.title} variant="h6" noWrap component={Link} to="/homework">
             ZADANIA
@@ -25,7 +25,7 @@ const Navbar = () => {
             CODEREVIEW
           </Typography> */}
           <Typography className={classes.title} variant="h6" noWrap component={Link} to="/contact">
-            KONTAKT
+            O mnie
           </Typography>
         </Toolbar>
       </AppBar>

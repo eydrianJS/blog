@@ -14,7 +14,7 @@ const Blog = () => {
   return (
     <>
       {posts.map((item: any) => (
-        <BlogEntry item={item.data()} key={item.id} />
+        <BlogEntry item={item.data()} key={item.id} id={item.id} />
       ))}
     </>
   )

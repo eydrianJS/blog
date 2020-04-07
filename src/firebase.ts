@@ -30,7 +30,17 @@ export const getPosts = async () => {
 
 export const getPost = async (id: string) => {
   try {
-    return await db.collection('posts').doc(id).get()
+    const a = await db.collection('posts').doc(id).get()
+    return a
+  } catch (error) {
+    alert(error.message)
+  }
+  return null
+}
+
+export const getImage = async (refrence: string) => {
+  try {
+    return storage.ref(`images/${refrence}`).getDownloadURL()
   } catch (error) {
     alert(error.message)
   }

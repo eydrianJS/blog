@@ -35,7 +35,7 @@ const Menu = () => {
           onClick={() => {
             setOpenMenu(false)
           }}>
-          BLOG
+          Blog
         </Typography>
         {/* <Typography className={classes.title} variant="h6" noWrap component={Link} to="/homework">
         ZADANIA
@@ -52,7 +52,7 @@ const Menu = () => {
           noWrap
           component={Link}
           to="/contact">
-          KONTAKT
+          O mnie
         </Typography>
       </div>
     </div>
