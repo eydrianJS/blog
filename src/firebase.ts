@@ -88,4 +88,15 @@ export const updateComentLikes = async (id: string, like: number) => {
   }
 }
 
+export const updatePostLikes = async (id: string, like: number) => {
+  console.log(id)
+  try {
+    return await db.collection('posts').doc(id).update({
+      like: like
+    })
+  } catch (error) {
+    return null
+  }
+}
+
 export default app

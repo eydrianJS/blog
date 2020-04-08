@@ -11,8 +11,10 @@ export default makeStyles({
   },
   icon: {
     color: '#52c3c0',
-    '&:hover': {
-      color: '#f0ad44'
+    [theme.breakpoints.up('md')]: {
+      '&:hover': {
+        color: '#f0ad44'
+      }
     },
     [theme.breakpoints.down('md')]: {
       fontSize: '20px!important'
@@ -20,8 +22,10 @@ export default makeStyles({
   },
   iconClicked: {
     color: '#f0ad44',
-    '&:hover': {
-      color: '#52c3c0'
+    [theme.breakpoints.up('md')]: {
+      '&:hover': {
+        color: '#52c3c0'
+      }
     },
     [theme.breakpoints.down('md')]: {
       fontSize: '20px!important'
@@ -81,7 +85,7 @@ export default makeStyles({
     width: "calc('100%' - 60px)",
     [theme.breakpoints.down('md')]: {
       width: '100%!important',
-      marginLeft: 20,
+      marginLeft: 7,
       marginRight: 20
     },
     '& label.Mui-focused': {

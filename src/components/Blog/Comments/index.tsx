@@ -36,7 +36,7 @@ const Comments = ({ item, setComments, comments }: CommentsParams) => {
       return comment
     })
     setComments(newComments)
-  }, [comments, item.id, setComments])
+  }, [comments, item.id, setComments, like])
 
   const likeClass = like ? classes.iconClicked : classes.icon
 

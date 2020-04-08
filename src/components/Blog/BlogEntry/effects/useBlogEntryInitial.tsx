@@ -12,7 +12,7 @@ interface Comment {
   milisecond: number
 }
 
-const useBlogEntryInitial = ({ item, id }: { item: any; id: string }) => {
+const useBlogEntryInitial = ({ item }: { item: any }) => {
   const [imageSrc, setImageSrc] = useState(placeholder)
   const [comments, setComments] = useState<Comment[]>([])
   const [openComments, setOpenComments] = useState(false)
@@ -26,7 +26,7 @@ const useBlogEntryInitial = ({ item, id }: { item: any; id: string }) => {
       getImage(item.image).then((data) => {
         setImageSrc(data)
       })
-      getComments(id).then((data) => {
+      getComments(item.id).then((data) => {
         if (data) {
           const currentComments: Comment[] = []
           data.docs.forEach((comment: firebase.firestore.DocumentData) => {
@@ -51,7 +51,7 @@ const useBlogEntryInitial = ({ item, id }: { item: any; id: string }) => {
         }
       })
     }
-  }, [id, item])
+  }, [item.id, item])
 
   return {
     imageSrc,
