@@ -47,4 +47,13 @@ export const getImage = async (refrence: string) => {
   return null
 }
 
+export const getComments = async (id: string) => {
+  try {
+    return await db.collection('comments').where('postID', '==', 'OHov4E1i4UU6ALn5xhO5').get()
+  } catch (error) {
+    alert(error.message)
+  }
+  return null
+}
+
 export default app

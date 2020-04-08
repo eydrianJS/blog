@@ -2,7 +2,7 @@ import React from 'react'
 import { AppBar, Toolbar, Typography } from '@material-ui/core/'
 import { Link } from 'react-router-dom'
 import useStyles from './styles'
-
+import imageSrc from './Logo.png'
 import Menu from './Menu'
 
 const Navbar = () => {
@@ -13,7 +13,7 @@ const Navbar = () => {
       <AppBar position="static" className={classes.main}>
         <Toolbar>
           <Typography className={classes.logo} variant="h6" noWrap component={Link} to="/">
-            FSFrontend
+            <img src={imageSrc} alt="logo" style={{ width: 160, height: 50 }} />
           </Typography>
           <Typography className={classes.title} variant="h6" noWrap component={Link} to="/blog">
             Blog

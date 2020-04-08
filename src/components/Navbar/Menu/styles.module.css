@@ -1,26 +1,24 @@
 .sidebar {
-  position: fixed;
-  z-index: 5;
-  padding: 20px;
-  height: 100%;
-  width: 200px;
-  top: 0;
-  right: 0;
-  background: linear-gradient(#52c3c0, #52c3c0);
-  opacity: 80%;
-  transition: all 500ms linear;
+  position: fixed !important;
+  z-index: 5 !important;
+  padding: 20px !important;
+  height: 100% !important;
+  width: 200px !important;
+  top: 0 !important;
+  right: 0 !important;
+  background: linear-gradient(#52c3c0, #52c3c0) !important;
+  transition: all 500ms linear !important;
 }
 .closeMe {
-  position: fixed;
-  z-index: 5;
-  padding: 20px;
-  height: 100%;
-  width: 200px;
-  top: 0;
-  right: -300px;
-  background: linear-gradient(#52c3c0, #52c3c0);
-  opacity: 80%;
-  transition: all 500ms linear;
+  position: fixed !important;
+  z-index: 5 !important;
+  padding: 20px !important;
+  height: 100% !important;
+  width: 200px !important;
+  top: 0 !important;
+  right: -300px !important;
+  background: linear-gradient(#52c3c0, #52c3c0) !important;
+  transition: all 500ms linear !important;
 }
 
 .closeMenu {

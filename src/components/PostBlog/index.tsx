@@ -4,16 +4,27 @@ import Grid from '@material-ui/core/Grid'
 import useStyle from './style'
 import { Paper } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
-import { getPost, getImage } from '../../firebase'
+import { getPost, getImage, getComments } from '../../firebase'
+import moment from 'moment'
+import Comments from '../Blog/Comments'
+import AddComment from '../Blog/AddComment'
 
 interface PostBlogParams {
   id: string
+}
+
+interface Comment {
+  id: string
+  content: string
+  time: string
+  author: string
 }
 
 const PostBlog = ({ id }: PostBlogParams) => {
   const classes = useStyle()
   const [post, setPost] = useState<firebase.firestore.DocumentData>()
   const [imageSrc, setImageSrc] = useState(image)
+  const [comments, setComments] = useState<Comment[]>([])
 
   useEffect(() => {
     getPost(id).then((data) => {
@@ -25,6 +36,28 @@ const PostBlog = ({ id }: PostBlogParams) => {
             setImageSrc(data)
           })
         }
+        getComments(id).then((data) => {
+          if (data) {
+            const currentComments: Comment[] = []
+            data.docs.forEach((comment: firebase.firestore.DocumentData) => {
+              const doc = comment.data()
+              const time = moment(parseInt(`${doc.time.seconds}000`))
+              const mom = moment().add(-30, 'days')
+              let endTime = time.format('ddd MMM DD YYYY')
+              if (!time.isBefore(mom)) {
+                endTime = time.startOf('hour').fromNow()
+              }
+              console.log(time)
+              currentComments.push({
+                id: comment.id,
+                author: doc.author,
+                content: doc.content,
+                time: endTime
+              })
+            })
+            setComments(currentComments)
+          }
+        })
       }
     })
   }, [id])
@@ -47,6 +80,10 @@ const PostBlog = ({ id }: PostBlogParams) => {
         <div className={classes.author}>
           {new Date(parseInt(`${post.date.seconds}000`)).toDateString()} | Adrian Olszowski
         </div>
+        {comments.map((comment) => (
+          <Comments item={comment} />
+        ))}
+        <AddComment />
       </Grid>
     </Paper>
   ) : null

@@ -49,6 +49,7 @@ export default makeStyles({
     marginRight: 10,
     fontSize: 20,
     width: '100%',
+    fontFamily: "'Alegreya', sans-serif",
     paddingBottom: 20,
     paddingTop: 20,
     [theme.breakpoints.up('sm')]: {

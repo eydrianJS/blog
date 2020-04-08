@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Paper, Button } from '@material-ui/core'
 import { Grid } from '@material-ui/core'
 import { Typography, IconButton } from '@material-ui/core'
@@ -7,19 +7,56 @@ import placeholder from './placeholder.jpg'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import MessageIcon from '@material-ui/icons/Message'
 import { Link } from 'react-router-dom'
-import { getImage } from '../../../firebase'
+import { getImage, getComments } from '../../../firebase'
+import Comments from '../Comments'
+import moment from 'moment'
+import AddComment from '../AddComment'
+
+interface Comment {
+  id: string
+  content: string
+  time: string
+  author: string
+}
 
 const BlogEntry = ({ item, id }: { item: any; id: string }) => {
   const classes = useStyle()
   const [imageSrc, setImageSrc] = useState(placeholder)
+  const [comments, setComments] = useState<Comment[]>([])
+  const [openComments, setOpenComments] = useState(false)
+  const handlerToggleComments = useCallback(() => {
+    setOpenComments(!openComments)
+  }, [openComments])
 
   useEffect(() => {
     if (item) {
       getImage(item.image).then((data) => {
         setImageSrc(data)
       })
+      getComments(id).then((data) => {
+        if (data) {
+          const currentComments: Comment[] = []
+          data.docs.forEach((comment: firebase.firestore.DocumentData) => {
+            const doc = comment.data()
+            const time = moment(parseInt(`${doc.time.seconds}000`))
+            const mom = moment().add(-30, 'days')
+            let endTime = time.format('ddd MMM DD YYYY')
+            if (!time.isBefore(mom)) {
+              endTime = time.startOf('hour').fromNow()
+            }
+            console.log(time)
+            currentComments.push({
+              id: comment.id,
+              author: doc.author,
+              content: doc.content,
+              time: endTime
+            })
+          })
+          setComments(currentComments)
+        }
+      })
     }
-  }, [id])
+  }, [id, item])
 
   return (
     <Paper className={classes.paper}>
@@ -44,15 +81,23 @@ const BlogEntry = ({ item, id }: { item: any; id: string }) => {
               <FavoriteIcon />
               &nbsp; {item.like}
             </IconButton>
-            <IconButton className={classes.icon}>
+            <IconButton className={classes.icon} onClick={handlerToggleComments}>
               <MessageIcon />
-              &nbsp; {item.unlike}
+              &nbsp; {comments.length}
             </IconButton>
           </div>
           <Button className={classes.button} component={Link} to={`/post/${id}`}>
             Czytaj dalej...
           </Button>
         </Grid>
+        {openComments ? (
+          <div style={{ width: '100%' }}>
+            {comments.map((comment) => (
+              <Comments item={comment} />
+            ))}
+            <AddComment />
+          </div>
+        ) : null}
       </Grid>
     </Paper>
   )

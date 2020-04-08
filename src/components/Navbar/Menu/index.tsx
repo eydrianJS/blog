@@ -19,7 +19,7 @@ const Menu = () => {
           }}
         />
       ) : null}
-      <div className={classe}>
+      <div className={classe} style={{ opacity: '80%' }}>
         <CloseIcon
           className={classes.closeMenu}
           onClick={() => {
