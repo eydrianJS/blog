@@ -18,6 +18,15 @@ export default makeStyles({
       fontSize: '20px!important'
     }
   },
+  iconClicked: {
+    color: '#f0ad44',
+    '&:hover': {
+      color: '#52c3c0'
+    },
+    [theme.breakpoints.down('md')]: {
+      fontSize: '20px!important'
+    }
+  },
   title: {
     color: '#080808'
   },
