@@ -56,4 +56,36 @@ export const getComments = async (id: string) => {
   return null
 }
 
+interface Comment {
+  content: string
+  author: string
+  post: string
+  likes: number
+}
+
+export const addComentsToDB = async (comment: Comment) => {
+  const now = new Date()
+  try {
+    return await db.collection('comments').add({
+      postID: comment.post,
+      author: comment.author,
+      content: comment.content,
+      time: now,
+      likes: 0
+    })
+  } catch (error) {
+    return null
+  }
+}
+
+export const updateComentLikes = async (id: string, like: number) => {
+  try {
+    return await db.collection('comments').doc(id).update({
+      likes: like
+    })
+  } catch (error) {
+    return null
+  }
+}
+
 export default app

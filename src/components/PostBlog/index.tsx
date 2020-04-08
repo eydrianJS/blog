@@ -18,6 +18,8 @@ interface Comment {
   content: string
   time: string
   author: string
+  likes: number
+  milisecond: number
 }
 
 const PostBlog = ({ id }: PostBlogParams) => {
@@ -43,18 +45,21 @@ const PostBlog = ({ id }: PostBlogParams) => {
               const doc = comment.data()
               const time = moment(parseInt(`${doc.time.seconds}000`))
               const mom = moment().add(-30, 'days')
+
               let endTime = time.format('ddd MMM DD YYYY')
               if (!time.isBefore(mom)) {
-                endTime = time.startOf('hour').fromNow()
+                endTime = time.startOf('minutes').fromNow()
               }
-              console.log(time)
               currentComments.push({
                 id: comment.id,
                 author: doc.author,
                 content: doc.content,
-                time: endTime
+                time: endTime,
+                likes: doc.likes,
+                milisecond: doc.time.seconds
               })
             })
+            currentComments.sort((a, b) => b.milisecond - a.milisecond)
             setComments(currentComments)
           }
         })
@@ -81,9 +86,9 @@ const PostBlog = ({ id }: PostBlogParams) => {
           {new Date(parseInt(`${post.date.seconds}000`)).toDateString()} | Adrian Olszowski
         </div>
         {comments.map((comment) => (
-          <Comments item={comment} />
+          <Comments item={comment} setComments={setComments} comments={comments} key={comment.id} />
         ))}
-        <AddComment />
+        <AddComment postID={id} setComments={setComments} />
       </Grid>
     </Paper>
   ) : null
