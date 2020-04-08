@@ -14,12 +14,12 @@ const Contact = () => {
         <div id="container" className={classes.container}>
           <img src={imageSrc} alt="placeholder" className={classes.image} />
           <Typography variant="h6" className={classes.text}>
-            Cześć! Jestem Adrian, pacuje jako Frontend Developer i prowadzę tego bloga aby Ci pomóc! First Step Frontend
-            powstał z myślą o osobach które chcą nauczyć się programowania <strong>od podstaw</strong>. Nigdy nie
-            przypuszałem że programowanie stanie się moją pasją jak i sposobem na życie. Wszystkiego nauczyłem się sam i
-            zdobytą więdzę zawdzięczam tylko i wyłącznie determinacji i doświadczeniom. Na początku było bardzo ciężko,
-            nie wiedziałem czego powinienem się uczyć i w jaki sposób mogę podnosić swoje kwalifikacje. Właśnie tu krok
-            po kroku pokażę Ci moją ścieżkę rozwoju abyś też mógł wkroczyć to biznesu IT.
+            Cześć! Jestem Adrian, pracuje jako Frontend Developer i prowadzę tego bloga aby Ci pomóc! First Step
+            Frontend powstał z myślą o osobach które chcą nauczyć się programowania <strong>od podstaw</strong>. Nigdy
+            nie przypuszałem że programowanie stanie się moją pasją jak i sposobem na życie. Wszystkiego nauczyłem się
+            sam i zdobytą więdzę zawdzięczam tylko i wyłącznie determinacji i potrzeby ciągłego rozwoju. Na początku
+            było bardzo ciężko, nie wiedziałem czego powinienem się uczyć i w jaki sposób mogę podnosić swoje
+            kwalifikacje. Właśnie tu krok po kroku pokażę Ci moją ścieżkę rozwoju abyś też mógł wkroczyć do biznesu IT.
           </Typography>
         </div>
       </Grid>

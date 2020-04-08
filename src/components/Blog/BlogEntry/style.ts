@@ -82,6 +82,7 @@ export default makeStyles({
     margin: 10,
     marginLeft: 40,
     marginRight: 40,
+    paddingRight: 10,
     width: "calc('100%' - 60px)",
     [theme.breakpoints.down('md')]: {
       width: '100%!important',
