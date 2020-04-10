@@ -31,6 +31,13 @@ export const getPosts = async () => {
 export const getPost = async (id: string) => {
   try {
     const a = await db.collection('posts').doc(id).get()
+    // const b = await a.data()?.posts.forEach((element: any) => {
+    //   element.get().then((data: any) => {
+    //     console.log(data)
+    //   })
+    // })
+    // console.log(b.data())
+    // console.log(b)
     return a
   } catch (error) {
     alert(error.message)
@@ -47,9 +54,22 @@ export const getImage = async (refrence: string) => {
   return null
 }
 
+export const setPost = async () => {
+  try {
+    return await db.collection('contentPosts').add({
+      content:
+        'Do <strong>deklarowania zmiennych</strong> w JavaScripcie przed pojawieniem się wersji ECMAScript2015 służyło słow <em>var</em>. Po pojawieniu się nowszej wersji javascriptu monopol na deklaracje przejęły słowa <em>let</em> oraz <em>const</em>, ale o tym w następnym blogu. Pewnie zastanawiasz się dlaczego <strong>deklaracja</strong> jest pogrubioną czcionką? Dwa podstawowe słowa związane ze zmiennymi to słowo <strong>deklaracja</strong> oraz <strong>inicjalizacja</strong>. Zanotuj. Już tłumaczę Ci różnicę między tymi pojęciami, deklaracją zmiennej jest nadanie nazwy dla naszego „pudelka”. Dla uproszczenia posłuże się wcześniej przytoczonym przykładem. Uznajmy że lodówka jest naszą aplikacją, teraz chcemy włożyć nasze pudełko do lodówki. Od teraz nasze pudełko(zmienna) znajduje się w naszej aplikacji(lodowka) i to jest właśnie declaracja. Jak to wygląda w kodzie?<div className="kod-js"><div className="highlight"><pre className="highlight"><code>moj kod</code></pre></div>div>'
+    })
+  } catch (error) {
+    alert(error.message)
+  }
+  return null
+}
+// setPost()
+
 export const getComments = async (id: string) => {
   try {
-    return await db.collection('comments').where('postID', '==', 'OHov4E1i4UU6ALn5xhO5').get()
+    return await db.collection('comments').where('postID', '==', id).get()
   } catch (error) {
     alert(error.message)
   }
@@ -89,7 +109,6 @@ export const updateComentLikes = async (id: string, like: number) => {
 }
 
 export const updatePostLikes = async (id: string, like: number) => {
-  console.log(id)
   try {
     return await db.collection('posts').doc(id).update({
       like: like

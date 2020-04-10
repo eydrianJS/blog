@@ -17,6 +17,10 @@ export default makeStyles({
     },
     color: '#080808'
   },
+  postImage: {
+    width: '100%',
+    marginTop: 20
+  },
   date: {
     fontSize: 20,
     margin: 10,

@@ -1,0 +1,14 @@
+.kod-js {
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+}
+.highlight {
+  overflow-x: scroll;
+  /* max-width: calc(100% + 150px); */
+  /* margin: auto -75px 0; */
+  padding: 15px 75px;
+}
+.highlight > code {
+  margin-left: 20px;
+}

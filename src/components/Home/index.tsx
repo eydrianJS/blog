@@ -7,6 +7,7 @@ import useStyle from './style'
 import Button from '@material-ui/core/Button'
 import { Paper } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
+import Modal from './Modal'
 
 const RegisterValidation = (values: { email: string }) => {
   const errors: { [key: string]: string } = {}
@@ -19,12 +20,20 @@ const RegisterValidation = (values: { email: string }) => {
 }
 const Home = () => {
   const classes = useStyle()
+  const [open, setOpen] = React.useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   const formik = useFormik({
     initialValues: {
       email: ''
     },
     validate: RegisterValidation,
-    onSubmit: ({ email }) => {}
+    onSubmit: ({ email }) => {
+      setOpen(true)
+    }
   })
 
   return (
@@ -33,9 +42,9 @@ const Home = () => {
         <img src={image} className={classes.image} alt="newsletter" />
         <div className={classes.buttons}>
           <Typography variant="h6" className={classes.text}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. At volutpat diam
-            ut venenatis tellus in. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus.
+            Nie masz czasu na śledzenie wszystkich blogów? Nie masz czasu na szukanie ciekawych wpisów o najnowszych
+            technologiach? Nie chce Ci się szukać pracy, wolisz żeby ona znalazła Ciebie? Jeżeli przynajmniej jedna
+            odpowiedz na te pytania jest twierdząca, musisz zapisać się na ten newsletter.
           </Typography>
           <form onSubmit={formik.handleSubmit}>
             <TextField
@@ -49,10 +58,13 @@ const Home = () => {
               className={classes.email}
               autoComplete="off"
             />
+            {formik.errors.email && formik.touched.email ? (
+              <div className={classes.error}>{formik.errors.email}</div>
+            ) : null}
             <Button type="submit" id="save" variant="contained" className={classes.save}>
               Zapisz się
             </Button>
-            {formik.errors.email && formik.touched.email ? <div>{formik.errors.email}</div> : null}
+            <Modal handleClose={handleClose} open={open} />
           </form>
         </div>
       </Grid>

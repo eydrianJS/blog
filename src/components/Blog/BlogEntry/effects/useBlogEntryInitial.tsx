@@ -28,6 +28,7 @@ const useBlogEntryInitial = ({ item }: { item: any }) => {
       })
       getComments(item.id).then((data) => {
         if (data) {
+          console.log(data.docs)
           const currentComments: Comment[] = []
           data.docs.forEach((comment: firebase.firestore.DocumentData) => {
             const doc = comment.data()

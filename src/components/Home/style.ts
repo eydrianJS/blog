@@ -13,7 +13,16 @@ export default makeStyles({
     width: '100%'
   },
   text: {
-    marginBottom: 30
+    marginBottom: 30,
+    fontFamily: "'Alegreya',bold sans-serif !important",
+    textAlign: 'left'
+  },
+  error: {
+    marginBottom: 0,
+    fontSize: 20,
+    fontFamily: "'Alegreya',bold sans-serif !important",
+    textAlign: 'center',
+    color: '#f0ad44!important'
   },
   button: {
     margin: theme.spacing(1)
