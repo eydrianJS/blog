@@ -72,20 +72,16 @@ const PostBlog = ({ id }: PostBlogParams) => {
   }, [post])
 
   useEffect(() => {
-    console.log(post)
     if (post) {
       const newState = [...content]
       post.posts.forEach((post: any) => {
         post.get().then((currentPost: any) => {
           let dataPost = currentPost.data()
           dataPost = { ...dataPost, name: dataPost.image }
-          console.log('newState', newState)
-          console.log('dataPost', dataPost)
           newState.push(dataPost)
           if (dataPost.image) {
             getImage(dataPost.image).then((data) => {
               const a = new Map(images.set(dataPost.image, data))
-              console.log(a)
               setImages(a)
             })
           }

@@ -30,15 +30,9 @@ export const getPosts = async () => {
 
 export const getPost = async (id: string) => {
   try {
-    const a = await db.collection('posts').doc(id).get()
-    // const b = await a.data()?.posts.forEach((element: any) => {
-    //   element.get().then((data: any) => {
-    //     console.log(data)
-    //   })
-    // })
-    // console.log(b.data())
-    // console.log(b)
-    return a
+    const post = await db.collection('posts').doc(id).get()
+
+    return post
   } catch (error) {
     alert(error.message)
   }
@@ -116,6 +110,22 @@ export const updateComentLikes = async (id: string, like: number) => {
     })
   } catch (error) {
     return null
+  }
+}
+
+export const logout = async () => {
+  await app.auth().signOut()
+}
+
+export const singIn = async (email: string, password: string) => {
+  try {
+    const result = await app.auth().signInWithEmailAndPassword(email, password)
+    if (!result.user) {
+      return { error: true, message: 'Nie udało się zalogować' }
+    }
+    return result
+  } catch (error) {
+    return error.message
   }
 }
 
