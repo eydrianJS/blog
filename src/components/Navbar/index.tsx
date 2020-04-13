@@ -18,9 +18,9 @@ const Navbar = () => {
           <Typography className={classes.title} variant="h6" noWrap component={Link} to="/blog">
             Blog
           </Typography>
-          {/* <Typography className={classes.title} variant="h6" noWrap component={Link} to="/homework">
-            ZADANIA
-          </Typography> */}
+          <Typography className={classes.title} variant="h6" noWrap component={Link} to="/homework">
+            Zadania
+          </Typography>
           {/* <Typography className={classes.title} variant="h6" noWrap component={Link} to="/codeReview">
             CODEREVIEW
           </Typography> */}

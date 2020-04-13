@@ -37,10 +37,10 @@ const Menu = () => {
           }}>
           Blog
         </Typography>
-        {/* <Typography className={classes.title} variant="h6" noWrap component={Link} to="/homework">
-        ZADANIA
+        <Typography className={classes.title} variant="h6" noWrap component={Link} to="/homework">
+          Zadania
         </Typography>
-        <Typography className={classes.title} variant="h6" noWrap component={Link} to="/codeReview">
+        {/* <Typography className={classes.title} variant="h6" noWrap component={Link} to="/codeReview">
         CODEREVIEW
       </Typography> */}
         <Typography

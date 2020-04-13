@@ -98,6 +98,17 @@ export const addComentsToDB = async (comment: Comment) => {
   }
 }
 
+export const addEmail = async (email: string) => {
+  const now = new Date()
+  try {
+    return await db.collection('email').add({
+      adres_email: email
+    })
+  } catch (error) {
+    return null
+  }
+}
+
 export const updateComentLikes = async (id: string, like: number) => {
   try {
     return await db.collection('comments').doc(id).update({

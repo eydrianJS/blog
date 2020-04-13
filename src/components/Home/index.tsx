@@ -7,6 +7,7 @@ import useStyle from './style'
 import Button from '@material-ui/core/Button'
 import { Paper } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
+import { addEmail } from '../../firebase'
 import Modal from './Modal'
 
 const RegisterValidation = (values: { email: string }) => {
@@ -32,7 +33,13 @@ const Home = () => {
     },
     validate: RegisterValidation,
     onSubmit: ({ email }) => {
-      setOpen(true)
+      addEmail(email)
+        .then((data) => {
+          setOpen(true)
+        })
+        .catch((error) => {
+          console.log('error')
+        })
     }
   })
 
