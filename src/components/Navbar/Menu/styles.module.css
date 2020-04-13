@@ -1,6 +1,6 @@
 .sidebar {
   position: fixed !important;
-  z-index: 5 !important;
+  z-index: 6000 !important;
   padding: 20px !important;
   height: 100% !important;
   width: 200px !important;
@@ -11,7 +11,7 @@
 }
 .closeMe {
   position: fixed !important;
-  z-index: 5 !important;
+  z-index: 6000 !important;
   padding: 20px !important;
   height: 100% !important;
   width: 200px !important;
@@ -28,7 +28,7 @@
   font-size: 70px !important;
   right: 20px;
   top: 0px;
-  z-index: 6;
+  z-index: 6000 !important;
   margin-bottom: 30px;
 }
 

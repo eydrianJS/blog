@@ -17,7 +17,7 @@ export default makeStyles({
       }
     },
     [theme.breakpoints.down('md')]: {
-      fontSize: '20px!important'
+      fontSize: '10px!important'
     }
   },
   iconClicked: {
@@ -150,6 +150,7 @@ export default makeStyles({
     marginTop: theme.spacing(4),
     textAlign: 'center',
     display: 'flex',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    overflow: 'hidden'
   }
 })

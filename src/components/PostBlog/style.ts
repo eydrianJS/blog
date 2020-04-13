@@ -4,7 +4,7 @@ const theme = createMuiTheme()
 
 export default makeStyles({
   image: {
-    width: '100%'
+    width: '90%'
   },
   title: {
     margin: 10,
@@ -76,7 +76,8 @@ export default makeStyles({
     minHeight: 400,
     textAlign: 'center',
     display: 'flex',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    overflow: 'hidden'
   },
   buttons: {
     width: '30%',

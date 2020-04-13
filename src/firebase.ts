@@ -17,7 +17,7 @@ const app = firebase.initializeApp({
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 })
 const db = app.firestore()
-const storage = firebase.storage()
+export const storage = firebase.storage()
 
 export const getPosts = async () => {
   try {
@@ -39,6 +39,17 @@ export const getPost = async (id: string) => {
   return null
 }
 
+export const getContentPost = async (id: string) => {
+  try {
+    const post = await db.collection('contentPosts').doc(id).get()
+
+    return post
+  } catch (error) {
+    alert(error.message)
+  }
+  return null
+}
+
 export const getImage = async (refrence: string) => {
   try {
     return storage.ref(`images/${refrence}`).getDownloadURL()
@@ -48,18 +59,49 @@ export const getImage = async (refrence: string) => {
   return null
 }
 
-export const setPost = async () => {
+export const updatePost = async (id: string, content: string, image: string) => {
   try {
-    return await db.collection('contentPosts').add({
-      content:
-        'Do <strong>deklarowania zmiennych</strong> w JavaScripcie przed pojawieniem się wersji ECMAScript2015 służyło słow <em>var</em>. Po pojawieniu się nowszej wersji javascriptu monopol na deklaracje przejęły słowa <em>let</em> oraz <em>const</em>, ale o tym w następnym blogu. Pewnie zastanawiasz się dlaczego <strong>deklaracja</strong> jest pogrubioną czcionką? Dwa podstawowe słowa związane ze zmiennymi to słowo <strong>deklaracja</strong> oraz <strong>inicjalizacja</strong>. Zanotuj. Już tłumaczę Ci różnicę między tymi pojęciami, deklaracją zmiennej jest nadanie nazwy dla naszego „pudelka”. Dla uproszczenia posłuże się wcześniej przytoczonym przykładem. Uznajmy że lodówka jest naszą aplikacją, teraz chcemy włożyć nasze pudełko do lodówki. Od teraz nasze pudełko(zmienna) znajduje się w naszej aplikacji(lodowka) i to jest właśnie declaracja. Jak to wygląda w kodzie?<div className="kod-js"><div className="highlight"><pre className="highlight"><code>moj kod</code></pre></div>div>'
+    db.collection('contentPosts').doc(id).update({
+      content: content,
+      image: image
     })
   } catch (error) {
     alert(error.message)
   }
   return null
 }
-// setPost()
+
+export const setPost = async (content: string, image: string, postID: string) => {
+  try {
+    db.collection('contentPosts')
+      .add({
+        content: content,
+        image: image
+      })
+      .then((nowyContnet) => {
+        getPost(postID).then((post) => {
+          if (post) {
+            if (post.data()?.posts) {
+              db.collection('posts')
+                .doc(postID)
+                .update({
+                  posts: [...post.data()?.posts, nowyContnet]
+                })
+            } else {
+              db.collection('posts')
+                .doc(postID)
+                .update({
+                  posts: [nowyContnet]
+                })
+            }
+          }
+        })
+      })
+  } catch (error) {
+    alert(error.message)
+  }
+  return null
+}
 
 export const getComments = async (id: string) => {
   try {
@@ -133,6 +175,33 @@ export const updatePostLikes = async (id: string, like: number) => {
   try {
     return await db.collection('posts').doc(id).update({
       like: like
+    })
+  } catch (error) {
+    return null
+  }
+}
+
+export const addNewPost = async ({
+  category,
+  image,
+  subTitle,
+  title
+}: {
+  category: string
+  image: string
+  subTitle: string
+  title: string
+}) => {
+  const now = new Date()
+  try {
+    return await db.collection('posts').add({
+      category: category,
+      image: image,
+      subTitle: subTitle,
+      title: title,
+      like: 0,
+      date: now,
+      public: false
     })
   } catch (error) {
     return null

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import BlogEntry from './BlogEntry'
 import { getPosts } from '../../firebase'
+import { AppContextInterface } from '../../interfaces/AuthInterfaces'
+import { AuthContext } from '../../providers/AuthProvider'
 interface Post {
   id: string
   category: string
@@ -14,6 +16,7 @@ interface Post {
 
 const Blog = () => {
   const [posts, setPosts] = useState<Post[]>([])
+  const { currentUser } = useContext<AppContextInterface>(AuthContext)
 
   useEffect(() => {
     getPosts().then((data) => {
@@ -21,6 +24,7 @@ const Blog = () => {
         const posts = data.docs.map((item) => {
           const currentPost = item.data()
           return {
+            public: currentPost.public,
             id: item.id,
             category: currentPost.category,
             content: currentPost.content,
@@ -31,10 +35,11 @@ const Blog = () => {
             title: currentPost.title
           }
         })
-        setPosts(posts)
+
+        setPosts(posts.filter((currentPost) => currentUser || currentPost.public))
       }
     })
-  }, [])
+  }, [currentUser])
   return (
     <>
       {posts.map((post: Post) => (
